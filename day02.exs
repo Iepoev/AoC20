@@ -18,7 +18,7 @@ defmodule Day2 do
 		(b1 or b2) and not (b1 and b2)
 	end
 
-	def on_index(idx, char, pw) do
+	defp on_index(idx, char, pw) do
 		char == pw |> String.at(idx-1)
 	end
 
