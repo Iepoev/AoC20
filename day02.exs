@@ -21,20 +21,17 @@ defmodule Day2 do
 	def on_index(idx, char, pw) do
 		char == pw |> String.at(idx-1)
 	end
+
+	def solve({:ok, list}, ftion) do
+		list
+		|> String.split("\n")
+		|> Enum.map(&(String.split(&1, ["-", " ", ": "])))
+		|> Enum.map(ftion)
+		|> Enum.count(&(&1))
+	end
 end
 
-{:ok, list} = File.read("inputs/02")
-
-list
-|> String.split("\n")
-|> Enum.map(&(String.split(&1, ["-", " ", ": "])))
-|> Enum.map(&Day2.validate_pw1/1)
-|> Enum.count(&(&1))
-|> IO.inspect
-
-list
-|> String.split("\n")
-|> Enum.map(&(String.split(&1, ["-", " ", ": "])))
-|> Enum.map(&Day2.validate_pw2/1)
-|> Enum.count(&(&1))
+File.read("inputs/02")
+#|> Day2.solve(&Day2.validate_pw1/1)
+|> Day2.solve(&Day2.validate_pw2/1)
 |> IO.inspect
